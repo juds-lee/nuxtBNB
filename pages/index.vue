@@ -9,7 +9,7 @@
   </div>
 </template>
 <script>
-import homes from "~/data/homes"
+//import homes from "~/data/homes"
 // import HomeCard from "~/components/homeCard"
 
 export default {
@@ -21,17 +21,12 @@ export default {
         name: 'description',
         content: 'This is a homepage!',
         hid:'description'
-
-      }
-    ]
+      }]
     }
   },
-  // components: {
-  //   HomeCard
-  // },
-  data() {
+  async asyncData({$dataApi}){
     return {
-      homes: homes.slice(0,3)
+      homes: (await $dataApi.getHomes()).json.hits
     }
   }
 }

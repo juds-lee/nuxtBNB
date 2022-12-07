@@ -54,12 +54,32 @@ export default {
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules:[],
+  buildModules:[
+    '@nuxt/image'
+  ],
    
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    '@nuxtjs/tailwindcss', '~/modules/auth'
+    '@nuxtjs/tailwindcss',
+    '~/modules/auth',
+    '@nuxtjs/axios',
+    '@nuxtjs/auth-next',
+    '~/modules/cloudinary',
+    '@nuxtjs/cloudinary'
   ],
+
+  cloudinary: {
+    cloudName: 'dwlljpz8q',
+  },
+  image: {
+    cloudinary: {
+      baseURL: 'https://res.cloudinary.com/dwlljpz8q/image/upload/'
+    }
+},
+  axios: {
+    baseURL: 'http://localhost:8080/v1',
+    credentials: true
+  },
 
 
   // Build  Configuration: https://go.nuxtjs.dev/config-build
@@ -72,6 +92,9 @@ export default {
 
   router: { 
     prefetchLinks: false,
+    router: {
+      middleware: ['auth']
+    }
   },
   
   plugins:[ 
@@ -90,14 +113,19 @@ export default {
     algolia: {
       appId: "ETY5PJ96FC",
       key: "08a81fe77e13588b7a54408321b7b1b8",
-    }
+    },
+    cloudinary: {
+      apiKey: '879696375351632'
   },
- 
+},
   privateRuntimeConfig: {
     algolia: {
       appId: "ETY5PJ96FC",
       key: "f9fcb98a7b302aa72cf155e1901ae7fe",
+    },
+    cloudinary: {
+      apiSecret: '7Zwu1qK7ZTMXraLpFxHY_bCArTQ'
     }
   },
-  
+
 }

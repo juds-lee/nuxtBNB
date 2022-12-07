@@ -30,6 +30,7 @@ export default function(context, inject){
         if(!isLoaded){
             waiting.push({ fn: makeAutoComplete, arguments})
             return
+            // so if google isnt ready, we are adding this function call to an array to run when it is ready 
         }
 
         const autoComplete = new window.google.maps.places.Autocomplete(input, { types: ['(cities)']})

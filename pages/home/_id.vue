@@ -48,6 +48,7 @@
             this.$maps.showMap(this.$refs.map, this.home._geoloc.lat, this.home._geoloc.lng)
         },
         async asyncData({params, $dataApi, error}){
+            console.log($dataApi);
             const responses = await Promise.all([
             $dataApi.getHome(params.id),
             $dataApi.getReviewsByHomeId(params.id),
